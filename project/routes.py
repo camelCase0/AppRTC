@@ -1,5 +1,5 @@
 from flask import render_template, request, flash, url_for,session
-from flask_login import login_user, login_required, logout_user
+
 from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.utils import redirect
 
@@ -7,6 +7,7 @@ from oauth_deco import login_is_required
 from project import app, db
 from .models import User
 from project import oauth
+
 
 @app.route('/')
 def index():
@@ -50,32 +51,12 @@ def login():
         if not user or not check_password_hash(user.password, password):
             flash("Перевірте правильність данних")
             return redirect(url_for('login'))
-
-        login_user(user, remember=remember)
+        session.permanent = remember
+        session['profile'] = email
         return redirect(url_for('room'))
 
 
-@app.route('/logout')
-@login_required
-def logout():
-    logout_user()
-    flash("Successfully loged out")
-    return redirect('/')
-
-
 @app.route('/room')
-def room():
-    if session.permanent:
-        return redirect(url_for('room1'))
-    else:
-        return redirect(url_for('room2'))
-
-@app.route('/meeting-room')
 @login_is_required
-def room1():
-    return render_template('room.html')
-
-@app.route('/conference-room')
-@login_required
-def room2():
+def room():
     return render_template('room.html')

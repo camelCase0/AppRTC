@@ -17,7 +17,7 @@ Login
         <form method="post">
             <input type="email" required name="email" id="email" class="form-control mt-5" placeholder="Логин" ><br>
             <input type="password" required name="password" id="password" class="form-control" placeholder="Пароль" ><br>
-            <a href="/sign-up" class=" nav-link">Зарегестрироваться</a>
+            <a href="{{url_for('register')}}" class=" nav-link">Зарегестрироваться</a>
             <a href="/glogin" class=" btn btn-warning">GOOGLE Sign-in</a>
             <input type="submit" class="btn btn-success" value="Войти"><br>
 
