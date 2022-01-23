@@ -10,19 +10,24 @@
 </head>
 <body>
     <ul class="mb-0">
-      <li class="li1" ><img class="image" src="static/img/LemonTree.png" alt="" ></li>
+
+        <li class="li1" ><img class="image" src="{{ url_for('static',filename='img/LemonTree.png') }}" alt="" ></li>
         {% if session.permanent %}
-        <li {% if url_for(request.endpoint)==url_for('logout') %} class="active" {% endif %}>
+        <li {% if request.endpoint=='logout' %} class="active" {% endif %}>
           <a href="{{url_for('logout')}}">logout</a>
         </li>
         {% else %}
-        <li {% if url_for(request.endpoint)==url_for('login') %} class="active" {% endif %} class="mr-2">
+        <li {% if request.endpoint=='login' %} class="active" {% endif %} class="mr-2">
             <a href="{{url_for('login')}}">login</a>
         </li>
         {% endif %}
 
-      <li {% if url_for(request.endpoint)==url_for('room') %} class="active" {% endif %}> <a  href="{{url_for('room')}}">room</a></li>
-      <li {% if url_for(request.endpoint)=='/' %} class="active" {% endif %}><a href="/">main</a></li>
+        <li {% if request.endpoint=='room' %} class="active" {% endif %}>
+            <a  href="{{url_for('room')}}">room</a>
+        </li>
+        <li {% if request.endpoint=='index' %} class="active" {% endif %}>
+            <a href="/">main</a>
+        </li>
     </ul>
 {% block body %}
 

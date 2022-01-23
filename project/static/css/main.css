@@ -48,7 +48,7 @@ form{
 label{
     display: block;
 }
-input{
+input[type=text]{
     width: 20em;
     height: 2em;
     background: #EB9007;
@@ -58,8 +58,14 @@ input{
 .buttn{
     font-size:2rem;
     color:orange;
+    border-radius:30px;
+    height:2rem;
+    width:2rem;
 }
-
+.bt{
+    color:orange;
+    font-size:3rem;
+}
 .buttn:hover{
     color: yellow;
 }

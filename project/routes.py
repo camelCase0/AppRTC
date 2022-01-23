@@ -1,17 +1,17 @@
-from flask import render_template, request, flash, url_for,session
-
+from flask import render_template, request, flash, url_for, session
+import uuid
 from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.utils import redirect
 
 from oauth_deco import login_is_required
 from project import app, db
-from .models import User
+from .models import User, Room
 from project import oauth
 
 
 @app.route('/')
 def index():
-    return render_template('index.html',session=session)
+    return render_template('index.html', session=session)
 
 
 @app.route('/register', methods=['POST', 'GET'])
@@ -56,7 +56,34 @@ def login():
         return redirect(url_for('room'))
 
 
-@app.route('/room')
+@app.route('/room', methods=['GET', 'POST'])
 @login_is_required
 def room():
-    return render_template('room.html')
+    if request.method == 'POST':
+        roomNum = request.form['n_groop']
+        room = Room.query.filter_by(room=roomNum).first()
+        if room:
+            return redirect(url_for('room') + "/" + room.url)
+        # redirect('/room/<string:url>')
+        else:
+            url = uuid.uuid4().hex
+            newRoom = Room(room=roomNum, url=url)
+            try:
+                db.session.add(newRoom)
+                db.session.commit()
+                flash("Кімнату створено")
+                return redirect(url_for('room') + "/" + url)
+            except:
+                return "Error adding new User to DB"
+    else:
+        return render_template('room.html')
+
+@app.route('/room/<path>/')
+@login_is_required
+def conf_room(path):
+    roomName = Room.query.filter_by(url=path).first_or_404().room
+    if(roomName):
+        session['room'] = roomName
+        return render_template('room.html', roomName=roomName)
+    else:
+        return redirect(url_for('room'))

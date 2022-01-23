@@ -21,13 +21,6 @@ google = oauth.register(
 )
 
 
-@app.route('/groom')
-@login_is_required
-def hello_world():
-    email = dict(session)['profile']['email']
-    return f'Hello, you are logged in as {email}!{session.permanent}'
-
-
 @app.route('/glogin')
 def glogin():
     google = oauth.create_client('google')  # create the google oauth client
