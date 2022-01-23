@@ -6,11 +6,15 @@ Homepage
 
 {% block body %}
 <div class="forms">
-    <form action="POST">
+    {% if roomName %}
+    <h2>{{roomName}}</h2>
+    {% else %}
+    <form method="POST">
         <label for="n_groop">Enter room`s name or URL</label>
         <input type="text" id='n_groop'name='n_groop'>
-        <a href="/" class="buttn"><i class="fas fa-play-circle"></i></a>
+        <button type="submit" class="btn"> <i class="bt fas fa-play-circle"></i> </button>
     </form>
+    {% endif %}
 </div>
 
 {% endblock %}

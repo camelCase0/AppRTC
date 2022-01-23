@@ -11,6 +11,13 @@ class User(UserMixin, db.Model):
     def __repr__(self):
         return '<User %r>' % self.id
 
+class Room(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    room = db.Column(db.String(100), unique=True)
+    url = db.Column(db.String(100), unique=True)
+
+    def __repr__(self):
+        return '<Room %r>' % self.id
 
 @login_manager.user_loader
 def load_user(user_id):
