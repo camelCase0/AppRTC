@@ -5,9 +5,17 @@ Homepage
 {% endblock %}
 
 {% block body %}
-    <div class="container">
-        <a href="/register" class="btn btn-primary ml-10 mt-5">Register</a>
-        <a href="/login" class="btn btn-success mt-5">Login</a>
-        <span>{{session.permanent}}</span>
+
+<div class="">
+    <img class='bg-image' src="static/img/Primofiori-Lemon-Tree-1024x597.jpg"/>
+
+    <div class="title text-center">
+        <h2 class="pt-5">Hi, this is LTVCHAT </h2>
+        <p class="mt-2">You can make videocall with your friends or colleges for FREE.</p>
+        <p class="mt-1">Before this you have to sign in. This is as easy as drink tea with lemon <i class="fas fa-laugh-wink"></i></p>
+        <h4 class="mt-2">We are waiting for you</h4>
+        <a href="{{url_for('login')}}" class="btn btn-warning"><b>Let's start</b></a>
     </div>
+</div>
+
 {% endblock %}

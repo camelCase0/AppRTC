@@ -5,8 +5,12 @@ Homepage
 {% endblock %}
 
 {% block body %}
-    <div class="container">
-    <input type="text" value="URL://">Register</input>
-    <a href="/connect" class="btn btn-success mt-5">Login</a>
-    </div>
+<div class="forms">
+    <form action="POST">
+        <label for="n_groop">Enter room`s name or URL</label>
+        <input type="text" id='n_groop'name='n_groop'>
+        <a href="/" class="buttn"><i class="fas fa-play-circle"></i></a>
+    </form>
+</div>
+
 {% endblock %}
