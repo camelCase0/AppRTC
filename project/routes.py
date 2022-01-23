@@ -3,7 +3,7 @@ import uuid
 from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.utils import redirect
 
-from oauth_deco import login_is_required
+from .oauth_deco import login_is_required
 from project import app, db
 from .models import User, Room
 from project import oauth

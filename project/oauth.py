@@ -2,7 +2,7 @@ from authlib.integrations.flask_client import OAuth
 from flask import redirect, url_for, session, request
 
 # decorator for routes that should be accessible only by logged in users
-from oauth_deco import login_is_required
+from .oauth_deco import login_is_required
 from project import app
 
 # oAuth Setup
