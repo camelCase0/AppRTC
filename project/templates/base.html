@@ -12,7 +12,7 @@
     <ul class="mb-0">
 
         <li class="li1" ><img class="image" src="{{ url_for('static',filename='img/LemonTree.png') }}" alt="" ></li>
-        {% if session.permanent %}
+        {% if session['profile'] %}
         <li {% if request.endpoint=='logout' %} class="active" {% endif %}>
           <a href="{{url_for('logout')}}">logout</a>
         </li>

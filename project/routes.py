@@ -1,5 +1,6 @@
-from flask import render_template, request, flash, url_for, session
 import uuid
+
+from flask import render_template, request, flash, url_for, session
 from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.utils import redirect
 
@@ -7,7 +8,6 @@ from .oauth_deco import login_is_required
 from project import app, db
 from .models import User, Room
 from project import oauth
-
 
 @app.route('/')
 def index():
@@ -84,6 +84,6 @@ def conf_room(path):
     roomName = Room.query.filter_by(url=path).first_or_404().room
     if(roomName):
         session['room'] = roomName
-        return render_template('room.html', roomName=roomName)
+        return redirect('https://pe-to-pe.herokuapp.com/')
     else:
-        return redirect(url_for('room'))
+        return redirect('https://pe-to-pe.herokuapp.com/')
